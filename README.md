@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="https://www.miosync.link/github/0_4.jpg" alt="Lambda³" width="400"/>
-</p>
-
-<h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NNNU</h1>
+<h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
 
 <p align="center">
   <strong>Share the geometry, commission the individual, and monitor degradation against its own history.</strong><br>
@@ -14,7 +10,6 @@
   <a href="#"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License"></a>
   <a href="#"><img src="https://img.shields.io/badge/pre--registrations-5%2F5%20executed-blue.svg" alt="Pre-registrations 5/5"></a>
-  <a href="https://colab.research.google.com/drive/1OObGOFRI8cFtR1tDS99iHtyWMQ9ZD4CI"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="colab"></a>
 </p>
 
 ---
