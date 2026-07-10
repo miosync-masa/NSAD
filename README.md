@@ -154,8 +154,8 @@ Full protocols, self-run baselines (including where they win), and the protocol-
 ### Installation
 
 ```bash
-git clone https://github.com/miosync-masa/Lambda_inverse_problem.git
-cd Lambda_inverse_problem
+git clone https://github.com/miosync-masa/NSAD.git
+cd NSAD
 pip install .
 ```
 
@@ -314,14 +314,7 @@ MIT License. *"Detects the moments of rupture — the unseen phase transitions, 
   title  = {Normal-Structure Anomaly Detection (Lambda³ NNNU): detecting deviation from mathematically structured normality without neural networks},
   author = {Iizumi, Masamichi},
   year   = {2026},
-  url    = {https://github.com/miosync-masa/Lambda_inverse_problem},
+  url    = {https://github.com/miosync-masa/NSAD},
   note   = {Based on Dr. Iizumi's Lambda³ Theory}
 }
 ```
-
-For theoretical discussion, practical applications, or collaboration proposals,
-please open an issue/PR — or connect via Zenodo, SSRN, or GitHub.
-
-> Science is not property; it's a shared horizon.
-> Let's redraw the boundaries, together.
-> — Iizumi & Digital Partners
