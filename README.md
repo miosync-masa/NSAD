@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="https://www.miosync.link/github/0_4.jpg" alt="Lambda³" width="400"/>
-</p>
-
-<h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NNNU</h1>
+<h1 align="center">Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
 
 <p align="center">
   <strong>Share the geometry, commission the individual, and monitor degradation against its own history.</strong><br>
