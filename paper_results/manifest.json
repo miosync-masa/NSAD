@@ -1,0 +1,186 @@
+{
+  "purpose": "machine-readable snapshot of the five pre-registered results for manuscript figures/tables; a build step, not an experiment \u2014 computations re-executed by importing the frozen runners with identical seeds, splits, and evaluation order",
+  "generator": "tests/figures/export_paper_results.py",
+  "export_commit": "a6c72c8448ed27045f8bbf8dfaf1c21ace507c68",
+  "provenance": {
+    "paderborn1": {
+      "plan": "doc/preregistrations/experiment_plan_paderborn.md",
+      "runner": "tests/paderborn/exp_paderborn_full.py",
+      "freeze": "plan 332b1d2, results 088bc8e"
+    },
+    "paderborn2": {
+      "plan": "doc/preregistrations/experiment_plan_paderborn2.md",
+      "runner": "tests/paderborn/exp_paderborn2.py",
+      "freeze": "impl 8ea1a9d before results"
+    },
+    "paderborn3": {
+      "plan": "doc/preregistrations/experiment_plan_paderborn3.md",
+      "runner": "tests/paderborn/exp_paderborn3.py",
+      "freeze": "impl c61f061 before results"
+    },
+    "ims": {
+      "plan": "doc/preregistrations/experiment_plan_ims.md",
+      "runner": "tests/ims/exp_ims.py",
+      "freeze": "impl b387a4f before results"
+    },
+    "hydraulic": {
+      "plan": "doc/preregistrations/experiment_plan_hydraulic.md",
+      "runner": "tests/hydraulic/exp_hydraulic_prereg.py",
+      "freeze": "plan 2f78443, impl 7c6d054 before results"
+    }
+  },
+  "datasets": {
+    "PADERBORN": "KAt Data Center (CC BY-NC 4.0) via GitHub Release pu-bearing-data",
+    "IMS": "NASA Prognostics Data Repository dataset 4 (IMS, Univ. of Cincinnati)",
+    "MILLING": "NASA Prognostics Data Repository dataset 3 (BEST Lab, UC Berkeley)",
+    "HYDRAULIC": "UCI id 447 (ZeMA, CC BY 4.0) via Machine-Learning-FGA mirror"
+  },
+  "files": {
+    "hydraulic_seed_stage.csv": {
+      "bytes": 6639,
+      "rows": 50
+    },
+    "hydraulic_seed_summary.csv": {
+      "bytes": 2675,
+      "rows": 20
+    },
+    "ims_summary.csv": {
+      "bytes": 3737,
+      "rows": 12
+    },
+    "ims_trajectories.npz": {
+      "bytes": 351144
+    },
+    "milling_wear.csv": {
+      "bytes": 6824,
+      "rows": 145
+    },
+    "paderborn_commissioning.csv": {
+      "bytes": 713,
+      "rows": 11
+    },
+    "paderborn_severity.csv": {
+      "bytes": 17988,
+      "rows": 160
+    },
+    "paderborn_support_candidates.csv": {
+      "bytes": 1065,
+      "rows": 5
+    }
+  },
+  "verification": {
+    "ims_t1B3_lead_h": {
+      "registered": 79.0,
+      "exported": 79.21666666667443,
+      "atol": 1.0,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_t1B4_lead_h": {
+      "registered": 148.0,
+      "exported": 148.39694444445195,
+      "atol": 1.0,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_t2B1_lead_h": {
+      "registered": 74.0,
+      "exported": 74.33333333331393,
+      "atol": 1.0,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_t1B3_rho_occ": {
+      "registered": 0.9,
+      "exported": 0.8999999999999998,
+      "atol": 0.005,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_t1B4_rho_occ": {
+      "registered": 1.0,
+      "exported": 0.9999999999999999,
+      "atol": 0.005,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_t2B1_rho_occ": {
+      "registered": 0.95,
+      "exported": 0.9486832980505138,
+      "atol": 0.005,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_h3l_delay_t1B3_pct": {
+      "registered": 13.96,
+      "exported": 13.96103896103896,
+      "atol": 0.05,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "ims_h3l_delay_t2B1_pct": {
+      "registered": 11.18,
+      "exported": 11.178861788617885,
+      "atol": 0.05,
+      "match": true,
+      "source": "experiment_plan_ims.md \u00a74"
+    },
+    "hydraulic_cooler_far_seed1": {
+      "registered": 0.0051,
+      "exported": 0.00510204081632653,
+      "atol": 0.002,
+      "match": true,
+      "source": "experiment_plan_hydraulic.md \u00a77"
+    },
+    "hydraulic_valve_rho_seed1": {
+      "registered": 0.925,
+      "exported": 0.9252081536527129,
+      "atol": 0.005,
+      "match": true,
+      "source": "experiment_plan_hydraulic.md \u00a77"
+    },
+    "paderborn1_inner_rho": {
+      "registered": 0.845,
+      "exported": 0.8451542547285165,
+      "atol": 0.02,
+      "match": true,
+      "source": "experiment_plan_paderborn.md \u00a75-H1"
+    },
+    "paderborn1_outer_rho": {
+      "registered": 0.866,
+      "exported": 0.8660254037844387,
+      "atol": 0.02,
+      "match": true,
+      "source": "experiment_plan_paderborn.md \u00a75-H1"
+    },
+    "paderborn2_far_mean_A": {
+      "registered": 0.431,
+      "exported": 0.4309895833333333,
+      "atol": 0.01,
+      "match": true,
+      "source": "experiment_plan_paderborn2.md \u00a78"
+    },
+    "paderborn2_far_mean_E": {
+      "registered": 0.141,
+      "exported": 0.14095052083333334,
+      "atol": 0.01,
+      "match": true,
+      "source": "experiment_plan_paderborn2.md \u00a78"
+    },
+    "paderborn2_absorb_B": {
+      "registered": 0.411,
+      "exported": 0.4110599878461672,
+      "atol": 0.01,
+      "match": true,
+      "source": "experiment_plan_paderborn2.md \u00a78"
+    },
+    "paderborn3_E3n4_far_mean": {
+      "registered": 0.001,
+      "exported": 0.0009765625,
+      "atol": 0.002,
+      "match": true,
+      "source": "experiment_plan_paderborn3.md \u00a77"
+    }
+  },
+  "verification_all_match": true
+}

@@ -1,4 +1,8 @@
-<h1 align="center">Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
+<p align="center">
+  <img src="https://www.miosync.link/github/0_4.jpg" alt="Lambda³" width="400"/>
+</p>
+
+<h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NNNU</h1>
 
 <p align="center">
   <strong>Share the geometry, commission the individual, and monitor degradation against its own history.</strong><br>
@@ -314,3 +318,10 @@ MIT License. *"Detects the moments of rupture — the unseen phase transitions, 
   note   = {Based on Dr. Iizumi's Lambda³ Theory}
 }
 ```
+
+For theoretical discussion, practical applications, or collaboration proposals,
+please open an issue/PR — or connect via Zenodo, SSRN, or GitHub.
+
+> Science is not property; it's a shared horizon.
+> Let's redraw the boundaries, together.
+> — Iizumi & Digital Partners
