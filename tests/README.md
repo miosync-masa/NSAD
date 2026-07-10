@@ -17,7 +17,9 @@ those SHAs; current paths are below.
 | Duel / costs / transfer (§6.5) | `python -m tests.multivariate.exp_support_duel` / `exp_deployability` / `exp_frozen_transfer` | parity+deltas; 468 FLOPs; FAR-with-detection transfer table |
 | Synthetic probes (§6.5–§7) | `python -m pytest tests/probes -q` | ghost state, worked consumer, H2, SPE/T² identities, contextual gate |
 | Core unit tests | `python -m pytest tests/core -q` | unknown channel, OR calibration, cycle-phase mechanism |
-| Manuscript figures | `python -m tests.figures.make_figures` | doc/figures/fig1–fig5 |
+| Manuscript figures (v1 / Appendix) | `python -m tests.figures.make_figures` | doc/figures/fig1–fig5 |
+| **Paper results snapshot (v2 build step)** | `python -m tests.figures.export_paper_results` | paper_results/*.csv, *.npz, manifest.json — re-executes the five pre-registered computations via the frozen runners (identical seeds/splits/order) and verifies key stats against the registered numbers |
+| Manuscript figures (v2 main text) | `python -m tests.figures.make_paper_v2_figures` | doc/figures/v2_fig1–v2_fig5, generated from paper_results/ ONLY (no dataset access) |
 | Hydraulic exploration | `python -m tests.hydraulic.exp_hydraulic` | doc/explorations/hydraulic_exploration.md |
 | Paderborn #1 | `python -m tests.paderborn.exp_paderborn_full` | doc/preregistrations/experiment_plan_paderborn.md §5 |
 | Paderborn #2 | `python -m tests.paderborn.exp_paderborn2` | doc/preregistrations/experiment_plan_paderborn2.md §8 |
