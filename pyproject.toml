@@ -68,8 +68,8 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/miosync-masa/Lambda_inverse_problem"
-Repository = "https://github.com/miosync-masa/Lambda_inverse_problem"
+Homepage = "https://github.com/miosync-masa/NSAD"
+Repository = "https://github.com/miosync-masa/NSAD"
 
 [tool.setuptools.packages.find]
 where = ["."]
