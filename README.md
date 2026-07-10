@@ -314,10 +314,3 @@ MIT License. *"Detects the moments of rupture — the unseen phase transitions, 
   note   = {Based on Dr. Iizumi's Lambda³ Theory}
 }
 ```
-
-For theoretical discussion, practical applications, or collaboration proposals,
-please open an issue/PR — or connect via Zenodo, SSRN, or GitHub.
-
-> Science is not property; it's a shared horizon.
-> Let's redraw the boundaries, together.
-> — Iizumi & Digital Partners
