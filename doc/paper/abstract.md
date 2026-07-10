@@ -1,10 +1,24 @@
-# Lambda³-NSAD — EAAI paper concept & abstract (v2, engineering pivot)
+# Lambda³-NSAD — MSSP paper concept & abstract (v2, engineering pivot)
 
 Working document for the journal submission. Target venue:
-**Engineering Applications of Artificial Intelligence (EAAI)** (first
-choice; alternates: Mechanical Systems and Signal Processing,
-Reliability Engineering & System Safety — same manuscript spine,
-different section weighting).
+**Mechanical Systems and Signal Processing (MSSP)** (first choice;
+submission main field: **[A] Signal processing in machine/system
+health monitoring**; alternates: Engineering Applications of
+Artificial Intelligence, Reliability Engineering & System Safety —
+same manuscript spine, different section weighting).
+
+**Why MSSP (venue pivot, logged 2026-07-10).** The paper's center is
+no longer "a generic AI anomaly detector applied to engineering" but
+*how healthy individuality, physical severity, alarm calibration, and
+longitudinal degradation are separated as signal structure in machine
+condition monitoring*. That is MSSP's stated scope (signal processing
+in machine/system health monitoring, time series methods, uncertainty
+quantification, prognostics), and MSSP explicitly requests theory +
+experiment — which the five pre-registered validations plus the §2.7
+mechanism obligations ([paper_v2_outline.md](paper_v2_outline.md))
+supply. The manuscript is positioned as **normal-structure signal
+interpretation for machine health monitoring**, not as an AI
+benchmark method.
 
 **This version supersedes the v1 concept** (NAB/SKAB/TEP-centered
 "AI-ready sensor interpretation" framing; preserved verbatim in git
@@ -21,14 +35,15 @@ correspondence: [claim_evidence_map.md](claim_evidence_map.md).
 **Primary (recommended):**
 
 > Share the Geometry, Commission the Individual: Separating Healthy
-> Individuality from Damage Severity in Deployable Bearing Anomaly
-> Detection
+> Individuality from Damage Severity in Normal-Structure Machine
+> Condition Monitoring
 
-**Alternative (conservative):**
+**Alternative (conservative, signal-first):**
 
 > Transferable Damage-Severity Geometry with Asset-Specific Alarm
 > Calibration: Pre-Registered Cross-Sectional and Longitudinal
-> Validation of Normal-Structure Anomaly Detection
+> Validation of Normal-Structure Signal Interpretation for Machine
+> Health Monitoring
 
 **Alternative (problem-first):**
 
@@ -70,10 +85,13 @@ Second fixed sentence:
 
 ## 4. Contributions
 
-Split deliberately into the AI contribution and the engineering
-contribution, because EAAI reviews for both.
+Split deliberately into the methodological (signal/statistical)
+contribution and the engineering contribution — MSSP requests theory
+and experiment together, and each methodological claim below carries
+its §2.7 mechanism obligation (stated mathematically/physically in the
+manuscript, grounded in an executed pre-registered result).
 
-### AI contribution
+### Methodological contribution (signal & statistics)
 
 - **A normal-structure anomaly framework that separates transferable
   severity geometry from asset-specific calibration and longitudinal
@@ -186,6 +204,11 @@ contribution, because EAAI reviews for both.
 
 | Risk | Mitigation |
 |---|---|
+| "High detection accuracy is not MSSP novelty" (the central MSSP risk) | Agreed — and the paper does not claim it. The contribution is the **separation of signal structure**: severity geometry, alarm calibration, and longitudinal reference as distinct statistical objects, each licensed by a registered success AND bounded by a registered failure of its misuse (#2 B–D, #4 H3L, #5 H3H). Every mechanism is stated mathematically/physically via the §2.7 obligations (outline), not only measured. |
+| "Where is the signal-processing novelty specifically?" | (i) The fault-agnostic vocabulary with a mechanism proof, not a heuristic: \|FFT\| is exactly circular-shift invariant, so switching-lag faults live in the discarded phase — the timing vocabulary recovers them, unit-tested; (ii) the non-saturating log-likelihood margin as a severity carrier (why probability-type indices lose gradation); (iii) the location–scale algebra of commissioning — what an affine transform of clean likelihood can fix (admission FAR) and provably cannot (longitudinal displacement, divided down with the unit's IQR). |
+| "Why is the margin a severity measure at all?" | §2.7-1: monotone distance below the clean support floor in a shared geometry; empirically order-preserving against physical extent (#1), graded stages (#5), and wear/time (#4, milling) — three independent physical severity axes. |
+| "Observability limit is hand-waving" | Defined operationally (§2.7-6): a fault mode is observable at granularity g iff its physical degree of freedom displaces the feature map on the fitted support; the accumulator's invariance across every registered granularity (H4H 5/5) is the demonstration, claimed as a representation property. |
+| "Paderborn is a supervised deep-learning diagnosis benchmark (Lessmeier et al. 2016) — where is the CNN/LSTM comparison?" | Stated first, in our own voice (§1 landscape): supervised fault classifiers answer "which known fault is this?" from labeled fault examples; this paper answers "how do we separate normal individuality from damage, and grade it, with healthy data only?" Different inputs (fault labels vs none), different outputs (class posterior vs severity margin + calibrated alarm) — no accuracy comparison is claimed or owed, and envelope analysis is positioned as the fault-specific complement on the signal side. |
 | "Only bearings / one rig per corpus" | Stated as a limitation up front; #5 extends the severity-geometry claim to a cyclic hydraulic rig (a second machine class, heterogeneous sensors) under registered statistics; the claim remains the role-separation principle, demonstrated end-to-end on the hardest public physical corpora available for it (known damage extent, graded degradation labels, run-to-failure); NAB/SKAB/TEP breadth checks retained in the appendix. |
 | "#5 isn't a real pre-registration (exploration came first)" | Conceded in the plan itself (§0, full disclosure): it is a registered confirmatory validation. Its genuinely new elements — one fixed vocabulary, five fresh splits, CI/Spearman statistics, kill rules — produced one new positive (valve margin ordering) and one kill (leak split fragility) the exploration had missed, which is the argument for the protocol. |
 | "Small n (3 failed bearings)" | Pre-registered kill thresholds were set for exactly this n; all verdicts quote them; no significance theater beyond registered CIs and Spearman tests. |

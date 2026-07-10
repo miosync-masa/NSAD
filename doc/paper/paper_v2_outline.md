@@ -1,13 +1,36 @@
 # Paper v2 outline — the engineering pivot
 
-Target venue: **Engineering Applications of Artificial Intelligence
-(EAAI)** (first choice). This document is the working outline of the
+Target venue: **Mechanical Systems and Signal Processing (MSSP)**
+(first choice; submission main field: **[A] Signal processing in
+machine/system health monitoring**). Fallbacks: EAAI, Reliability
+Engineering & System Safety — same manuscript spine, different section
+weighting. This document is the working outline of the
 pivoted manuscript. It supersedes the v1 draft
 ([paper_draft.md](paper_draft.md)) **as the main line only**: the v1
 draft is complete, its numbers are unchanged, and its NAB / SKAB / TEP
 material becomes the Appendix of this paper (migration plan below).
 Concept, abstract, and contribution bullets: [abstract.md](abstract.md).
 Claim–evidence correspondence: [claim_evidence_map.md](claim_evidence_map.md).
+
+**Venue pivot rationale (logged 2026-07-10).** The paper's center is
+no longer "a generic AI anomaly detector applied to engineering" but
+*how healthy individuality, physical damage severity, alarm
+calibration, and longitudinal degradation are separated as signal
+structure in machine condition monitoring* — normal-structure signal
+interpretation for machine health monitoring. That is MSSP's stated
+scope (signal processing in machine/system health monitoring; time
+series methods; uncertainty quantification; prognostics), and the
+evidence base is theory + physical experiment, which MSSP explicitly
+requests. Consequence for the writing (not for the evidence): the
+mechanism of each result must be stated mathematically/physically, not
+only measured — the §2.7 obligations below.
+*Outline review incorporated (2026-07-10), four writing directives,
+zero new experiments*: (1) §2.7 back-referenced from every Results
+subsection and figure caption (pairing rule); (2) §3 hard-capped at
+half a page; (3) §1 gains the MSSP-native competitive landscape with
+the supervised-diagnosis differentiation stated first; (4) §6 closes
+the H3L boundary mechanistically from §2.7-3/4 — success and failure
+derived from the same affine equation.
 
 **Integration-phase rules (binding).** No new detection features, no
 new feature vocabulary, no new threshold tuning, no RUL extension, no
@@ -117,10 +140,30 @@ mere false alarms.
 - The engineering dilemma: narrow support → false alarms on unseen
   healthy units; wide support → shallow damage absorbed. Both sides
   *measured* in this paper, not argued (pre-reg #1 H3, #2 B/C/D).
+- **Competitive landscape, MSSP-native (mandatory).** Position the
+  work inside the literatures MSSP readers live in, not the AI
+  benchmark literature: envelope analysis and the fault-frequency
+  tradition (Randall & Antoni line), spectral kurtosis,
+  cyclostationary analysis, deep-learning PHM (CNN/LSTM fault
+  classifiers on CWRU/Paderborn), transfer learning for bearing fault
+  diagnosis, and Bayesian degradation modeling. The Paderborn corpus
+  (Lessmeier et al. 2016) is a standard supervised-diagnosis
+  benchmark, so the differentiation is stated first, in our own
+  voice: **supervised fault classifiers answer "which known fault is
+  this?" from labeled fault examples; this paper answers a different
+  question — "how do we separate normal individuality from damage,
+  and grade the damage, without ever learning a fault shape?"** No
+  detection-accuracy comparison against fault classifiers is claimed
+  or owed: the methods consume different information (fault labels vs
+  healthy data only) and produce different outputs (class posterior
+  vs severity margin + calibrated alarm). Envelope analysis is the
+  complementary contrast on the signal side: it encodes fault-specific
+  physics (defect frequencies) a priori; the fault-agnostic vocabulary
+  deliberately does not, and §2.7-2 states what is paid and bought.
 - The deployment question (§1 above) and the three-layer answer,
   previewed.
-- Contribution summary: the AI contribution / engineering
-  contribution split (abstract.md §4).
+- Contribution summary: the methodological (signal/statistical)
+  contribution / engineering contribution split (abstract.md §4).
 - Scope nails: anomaly detection, not localization; no RUL; evidence
   is pre-registered with frozen implementations (freeze SHA precedes
   results SHA).
@@ -143,30 +186,95 @@ mere false alarms.
 - Detector core inherited unchanged from the released implementation
   (frozen defaults; pointer to Appendix for the architecture detail
   already drafted in v1 §3–§4).
+- **§2.7 Signal-level rationale (MSSP writing obligations).** Six
+  mechanisms the venue will demand stated mathematically/physically,
+  each already grounded in an executed result — no new experiments,
+  only exposition.
+  **Pairing rule (binding).** §2.7 does not discharge the obligation
+  by existing inside §2: MSSP's review axis "contribution to
+  understanding the underlying physics/signal processing" is scored
+  next to the results. Therefore every Results subsection in §4–§5
+  **opens with one back-reference sentence** recalling its §2.7
+  mechanism ("this is expected to hold because…"), and every results
+  figure caption pairs the measurement with its one-line why. The
+  mechanism map is fixed here: §4 severity ordering ↔ 2.7-1/2;
+  §4 commissioning ↔ 2.7-3; §4 support-expansion failure ↔ 2.7-4
+  (population-quantile side); §4 hydraulic ↔ 2.7-1/2/6; §5
+  progressiveness ↔ 2.7-1; §5 H3L ↔ 2.7-3/4; §5 H4L ↔ 2.7-5.
+  The six mechanisms:
+  1. *Why the margin preserves severity*: the margin is an
+     unnormalized log-likelihood distance below the clean support
+     floor — monotone in displacement from the normal structure, never
+     squashed through a probability — so a physically deeper fault
+     maps to a larger distance in the shared geometry (evidence: #1
+     H1 ordering, #5 H1H/H2H, hydraulic exploration's saturation
+     contrast in the v1 draft).
+  2. *Why the vocabulary is fault-agnostic*: the qualification law
+     (architecture §13.2) — log-spaced band energies, spectral
+     entropy, generic envelope bands, cycle-phase profile + timing —
+     nothing aligned to fault frequencies or component identities; the
+     cycle-phase case carries its own mechanism proof (|FFT| is
+     circular-shift invariant; the timing features move monotonically
+     with lag — `tests/core/test_cycle_phase.py`).
+  3. *What location–scale calibration changes and what it cannot*: an
+     affine transform of the unit's clean log-likelihood — it moves
+     the alarm origin and unit (decision variable) and provably leaves
+     the shared geometry and margin untouched (severity audit
+     bit-identical, #3); the same algebra explains the longitudinal
+     failure — dividing by a unit's healthy IQR divides the absolute
+     damage displacement with it (H3L: late or silent).
+  4. *Cross-sectional vs longitudinal semantics*: admission FAR is a
+     population-quantile alignment problem; failure alarming is a
+     within-asset temporal-reference problem; the two are different
+     statistical objects, and #3-success + #4-kill is the measured
+     proof that solving one does not solve the other.
+  5. *Why same-shaft propagation separates detection from
+     localization*: a vibration sensor observes the response of the
+     mechanical system (shaft, housing, load path), so departure from
+     normal structure is a system-level observable; attributing it to
+     a component requires spatial inversion (arrival order, amplitude
+     ratios, phase) that a single-sensor detector does not perform
+     (H4L controls).
+  6. *Observability limit, defined*: a fault mode is observable at
+     granularity g iff its physical degree of freedom displaces the
+     feature map φ_g on the fitted support; the accumulator's
+     invariance across every registered granularity (H4H, 5/5) is the
+     operational demonstration — a representation property, not a
+     detector property.
 
-### §3 Generic qualification (short)
-- One compact subsection summarizing NAB (unknown channel 85% @
-  0.56% FP; combined 96.3%), SKAB (100% @ 382/10k), TEP (K=1
-  degeneration to Hotelling T²; SPE/T² identities) — as breadth
-  checks only, with the verbatim framing sentence of §3 above.
+### §3 Generic qualification (short — **hard cap: half a page**)
+- Length rule, fixed: MSSP readers largely do not know NAB, and the
+  IT time-series benchmark world is outside their landscape — every
+  paragraph spent here reads as misallocated pages. Half a page
+  total: one summary table row per corpus + the framing sentence.
+- Content: NAB (unknown channel 85% @ 0.56% FP; combined 96.3%),
+  SKAB (100% @ 382/10k), TEP (K=1 degeneration to Hotelling T²;
+  SPE/T² identities) — as breadth checks only, with the verbatim
+  framing sentence of §3 above. The T²/SPE identities are the one
+  detail worth a sentence here, because they speak MSSP's language
+  (the detector contains the classical statistics as special cases).
 - Everything else (protocol taxonomy, baselines, duel, transfer
   test, cost tables) → Appendix.
 
 ### §4 Cross-sectional engineering validation (Paderborn #1–#3)
 - Corpus and ground truth: real accelerated-lifetime damage with
   known physical extent; six healthy individuals.
-- **Shared severity** (#1 H1): 12/12 ordered pairs, zero reversals,
-  ρ +0.845/+0.866; identity-noise floor disclosed.
-- **Support expansion failure** (#1 H3, #2 A–D): the FAR/absorption
+- **Shared severity** (#1 H1) [opens with §2.7-1/2 back-reference]:
+  12/12 ordered pairs, zero reversals, ρ +0.845/+0.866;
+  identity-noise floor disclosed.
+- **Support expansion failure** (#1 H3, #2 A–D) [opens with §2.7-4
+  back-reference, population-quantile side]: the FAR/absorption
   table; B's lost ordering pair; the registered kill conditions doing
   their job.
-- **Two-scalar commissioning** (#2 E → #3 E3): the E1-ladder
+- **Two-scalar commissioning** (#2 E → #3 E3) [opens with §2.7-3
+  back-reference — what the affine transform can move]: the E1-ladder
   diagnostic (model, not sample size); E3 at 0.10% FAR from ~64 s;
   severity audit bit-identical. Role bound stated immediately:
   healthy admission calibration, not a failure alarm.
 - #1 H2 (condition-as-regime purity) reported killed, with its
   confound.
-- **Cross-domain graded severity (#5, hydraulic rig)** — closing
+- **Cross-domain graded severity (#5, hydraulic rig)** [opens with
+  §2.7-1/2/6 back-references] — closing
   subsection: the severity geometry read against graded physical
   labels on a second machine class (cooler 100% detection with
   CI-separated ordered margins on 5/5 splits; valve margins ordered,
@@ -179,17 +287,19 @@ mere false alarms.
 
 ### §5 Longitudinal engineering validation (NASA IMS #4)
 - Per-asset mode: construction on the unit's own first 20% of life.
-- **Statistical progressiveness** (H1L 3/3): occupancy ρ, EOL
-  deepening CIs, up to +463 IQR.
+- **Statistical progressiveness** (H1L 3/3) [opens with §2.7-1
+  back-reference]: occupancy ρ, EOL deepening CIs, up to +463 IQR.
 - **Lead time / persistence / healthy FAR** (H2L, split reading):
   74–148 h leads at 93.5–99.6% persistence; the t1-B3 6.92%
   healthy-FAR miss reported as a genuine miss.
-- **Fleet calibration fails in the damage phase** (H3L killed 3/3):
-  +13.96% / silent / +11.18% of life — the bound on §4's
-  commissioning win; the bundling disclosure (geometry mismatch +
-  scale compression).
-- **Same-shaft control finding** (H4L): late-life onsets on
-  non-failed bearings; the detection-vs-localization scope split.
+- **Fleet calibration fails in the damage phase** (H3L killed 3/3)
+  [opens with §2.7-3/4 back-reference — the same affine algebra,
+  other consequence]: +13.96% / silent / +11.18% of life — the bound
+  on §4's commissioning win; the bundling disclosure (geometry
+  mismatch + scale compression).
+- **Same-shaft control finding** (H4L) [opens with §2.7-5
+  back-reference]: late-life onsets on non-failed bearings; the
+  detection-vs-localization scope split.
 - Milling as auxiliary/descriptive: margin vs continuous wear,
   median ρ +0.38, heterogeneity included.
 
@@ -199,6 +309,27 @@ mere false alarms.
   carrying the pre-registered result that licenses it *and* the
   pre-registered failure that forbids its neighbor's job.
 - Severity margin vs alarm score as distinct deliverables.
+- **Closing the H3L boundary mechanistically (the paper's
+  intellectual center — mandatory subsection).** Not "commissioning
+  worked cross-sectionally and failed longitudinally" as two
+  measurements, but **two consequences of the same equation**, via
+  §2.7-3/4: write the standardized margin m̃ = (m − b̂ᵢ)/ŝᵢ once, and
+  read it twice. Cross-sectionally, the affine map aligns healthy
+  quantiles across units, so the admission FAR lands at design (#3,
+  0.10%) while the shared geometry — and with it severity ordering —
+  is untouched by construction (bit-identical audit). Longitudinally,
+  the *same* division by the unit's healthy scale ŝᵢ divides the
+  absolute damage displacement: a unit with a large healthy IQR has
+  its fault growth compressed by exactly the factor that made its
+  healthy phase well-calibrated — hence onset 11–14% of life late, or
+  never (H3L 3/3). One transform; two statistical objects
+  (population-quantile alignment vs within-asset temporal
+  displacement); success on one axis and failure on the other are
+  *derived*, not merely observed. Fold H2L-b in as the same lesson's
+  self-reference form: an own-history floor fixes the reference, not
+  the calibration (t1-B3's 6.92%). This subsection is what moves the
+  paper from experiment report to contribution-to-understanding — the
+  MSSP review axis the venue pivot was for.
 - The handoff: a new unit is operational after short commissioning;
   alarm authority migrates to its own history as it accumulates.
 
@@ -232,8 +363,19 @@ mere false alarms.
 ## 5. Figures plan (no new experiments; regenerated from cached runs only)
 
 Existing figures fig1–fig5 (NAB/multivariate) move with their
-sections to the Appendix. Main-text figure candidates — all derivable
-from the already-executed #1–#4 runs' outputs, no new measurement:
+sections to the Appendix. Main-text figures are a two-stage build
+(publication engineering, not research): (1)
+`python -m tests.figures.export_paper_results` re-executes the five
+pre-registered computations through the frozen runners (identical
+seeds, splits, and evaluation order) into the machine-readable
+snapshot `paper_results/` (CSV/NPZ + manifest.json with a
+verification block against the registered numbers); (2)
+`python -m tests.figures.make_paper_v2_figures` renders
+doc/figures/v2_fig1–v2_fig5 from that snapshot ONLY — no dataset
+access, no hand-typed numbers.
+Caption rule, per the §2.7 pairing rule: every results figure caption
+carries its one-line mechanism ("measured + why") alongside the
+measurement:
 
 1. Severity ladder: per-bearing median margin vs physical extent,
    per condition (Paderborn #1).
