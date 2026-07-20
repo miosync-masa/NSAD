@@ -1,12 +1,6 @@
 <h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
 
-<p align="center">
-  <strong>Share the geometry, commission the individual, and monitor degradation against its own history.</strong><br>
-  We do not learn anomalies; we clean normality.<br>
-  No anomaly-shape learning. No neural networks. No per-dataset threshold tuning.
-</p>
-
-<p align="center">
+<p>
   <a href="#"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License"></a>
   <a href="#"><img src="https://img.shields.io/badge/pre--registrations-5%2F5%20executed-blue.svg" alt="Pre-registrations 5/5"></a>
