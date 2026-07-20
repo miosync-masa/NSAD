@@ -1,4 +1,4 @@
-<h1 align="center">📕 Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
+<h1> Normal-Structure Anomaly Detection — Lambda³ NSAD</h1>
 
 <p>
   <a href="#"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
