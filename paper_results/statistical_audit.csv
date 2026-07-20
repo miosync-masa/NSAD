@@ -1,0 +1,4 @@
+ladder,pair,n_bearings_lo,n_bearings_hi,n_recordings_lo,n_recordings_hi,n_frames_lo,n_frames_hi,frame_ci_lo,frame_ci_hi,cluster_ci_lo,cluster_ci_hi,ordered_frame,ordered_cluster,provenance
+inner,1->2,4,1,320,80,5124,1278,8.394056945207236,9.255810881739711,7.4540307266596635,10.480378698827893,True,True,"post-hoc statistical audit (recording-level cluster bootstrap), NOT pre-registered"
+inner,2->3,1,1,80,80,1278,1286,1.8726146465760034,2.8003653060270266,0.8206858793376316,3.9088471289330315,True,True,"post-hoc statistical audit (recording-level cluster bootstrap), NOT pre-registered"
+outer,1->2,2,1,160,80,2557,1279,12.877890305551746,16.50727981680633,9.501415168850098,20.4345045004288,True,True,"post-hoc statistical audit (recording-level cluster bootstrap), NOT pre-registered"

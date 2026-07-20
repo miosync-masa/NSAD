@@ -1,0 +1,6 @@
+feasible,min_abs_at_far2,min_far_at_abs50,fold_flags,far_monotone,abs_monotone,model
+False,,0.22200520833333334,"[True, False, False]",True,True,M1
+False,0.7599618022397777,0.08772786458333333,"[False, False, True]",True,True,M2
+False,0.7777584859796858,0.20540364583333334,"[False, True, False]",True,True,M3
+False,,0.244140625,"[True, False, False]",True,True,M4
+False,0.7723760743120062,0.08447265625,"[False, True, True]",True,True,M5
