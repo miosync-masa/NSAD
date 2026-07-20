@@ -300,10 +300,10 @@ MIT License. *"Detects the moments of rupture — the unseen phase transitions, 
 
 ```bibtex
 @software{lambda3_nnnu_2026,
-  title  = {Normal-Structure Anomaly Detection (Lambda³ NNNU): detecting deviation from mathematically structured normality without neural networks},
+  title  = {Normal-Structure Anomaly Detection (Lambda³ NSAD): detecting deviation from mathematically structured normality without neural networks},
   author = {Iizumi, Masamichi},
   year   = {2026},
   url    = {https://github.com/miosync-masa/NSAD},
-  note   = {Based on Dr. Iizumi's Lambda³ Theory}
+  note   = {Based on Mr. Iizumi's Lambda³ Theory}
 }
 ```
