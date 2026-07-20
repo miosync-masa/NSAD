@@ -288,15 +288,3 @@ manuscript, grounded in an executed pre-registered result).
   unchanged by all six pre-registrations.
 - A commissioned unit's damage phase under its own scale on
   longitudinal fleet data remains untested.
-
-## 9. Citation
-
-```bibtex
-@software{lambda3_nnnu_2026,
-  title  = {Normal-Structure Anomaly Detection (Lambda³ NNNU): detecting deviation from mathematically structured normality without neural networks},
-  author = {Iizumi, Masamichi},
-  year   = {2026},
-  url    = {https://github.com/miosync-masa/Lambda_inverse_problem},
-  note   = {Based on Dr. Iizumi's Lambda³ Theory}
-}
-```
