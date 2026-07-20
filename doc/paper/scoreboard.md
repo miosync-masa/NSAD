@@ -328,8 +328,8 @@ tests.multivariate.benchmark_tep`, `python -m tests.multivariate.contextual_stra
 ## 9. Reproducibility
 
 ```bash
-git clone https://github.com/miosync-masa/Lambda_inverse_problem.git
-cd Lambda_inverse_problem
+git clone https://github.com/miosync-masa/NSAD.git
+cd NSAD
 pip install .
 git clone --depth 1 https://github.com/numenta/NAB.git NAB
 
@@ -356,9 +356,9 @@ MIT. See repository root.
 
 ```bibtex
 @software{lambda3_nnnu_2026,
-  title  = {Normal-Structure Anomaly Detection (Lambda³ NNNU): detecting deviation from mathematically structured normality without neural networks},
+  title  = {Normal-Structure Anomaly Detection (Lambda³ NSAD): detecting deviation from mathematically structured normality without neural networks},
   author = {Iizumi, Masamichi},
   year   = {2026},
-  url    = {https://github.com/miosync-masa/Lambda_inverse_problem},
+  url    = {https://github.com/miosync-masa/NSAD},
 }
 ```
