@@ -1,4 +1,4 @@
-# Claim–evidence map — the five pre-registrations
+# Claim–evidence map — the six pre-registrations
 
 Companion table for the pivoted manuscript
 ([paper_v2_outline.md](paper_v2_outline.md)). For every claim the
@@ -12,7 +12,7 @@ interpretation (final section).
 
 Provenance discipline: each plan's implementation was frozen in a
 commit **before** its results were read (freeze SHA precedes results
-SHA in git history for #2, #3, #4; #1's plan was fixed at 332b1d2 and
+SHA in git history for #2, #3, #4, #5, #6; #1's plan was fixed at 332b1d2 and
 its results recorded at 088bc8e).
 
 | # | Plan (doc) | Runner | Freeze / provenance |
@@ -22,6 +22,7 @@ its results recorded at 088bc8e).
 | 3 | [experiment_plan_paderborn3.md](../preregistrations/experiment_plan_paderborn3.md) | `python -m tests.paderborn.exp_paderborn3` | impl frozen c61f061 before results |
 | 4 | [experiment_plan_ims.md](../preregistrations/experiment_plan_ims.md) | `python -m tests.ims.exp_ims` | impl frozen b387a4f before results |
 | 5 | [experiment_plan_hydraulic.md](../preregistrations/experiment_plan_hydraulic.md) | `python -m tests.hydraulic.exp_hydraulic_prereg` | plan frozen 2f78443 · impl frozen 7c6d054 before results |
+| 6 | [experiment_plan_density_invariance.md](../preregistrations/experiment_plan_density_invariance.md) | `python -m tests.paderborn.exp_density_invariance` | plan frozen dd264cc · impl frozen 8beb325 · results 3b75342 |
 
 ---
 
@@ -96,11 +97,14 @@ alarm is 11–14% of life late, or silent.*
 
 ## Pillar 1 extension — graded severity on a second machine class (#5)
 
-**Manuscript claim**: *the graded-severity geometry extends beyond
-bearings: on a cyclic hydraulic rig, physical degradation grade maps
-to ordered, CI-separated severity margins for the targets the
-fault-agnostic vocabulary can observe — and the margin can order
-severity even at stages the alarm cannot yet detect.*
+**Manuscript claim**: *the graded-severity ordering principle
+replicates beyond bearings — the same margin construction (a
+different adapter, a separately fitted model, a single rig), not a
+transferred common geometry: on a cyclic hydraulic rig, physical
+degradation grade maps to ordered, CI-separated severity margins for
+the targets the fault-agnostic vocabulary can observe — and
+below-floor group medians retain ordinal stage information at stages
+where individual alarm detection is low.*
 
 Disclosure carried with the claim (registered in #5 §0): #5 is a
 **registered confirmatory validation**, not a blind pre-registration —
@@ -116,6 +120,36 @@ split seeds, ordering statistics with CIs, and the pass/kill rules.
 | Honest bounds | cooler healthy FAR at design on only 1/5 seeds (0.51–5.61%, worst seed = BIC K-collapse); the exploration's single-split leak detection (82/91%) did not survive registered splits |
 | Scope (registered §4) | within-asset, single rig — no cross-individual transfer, no longitudinal claim, no localization, no RUL |
 | Evidence | experiment_plan_hydraulic.md §7 |
+
+## Pillars 2+3 at formulation level — density-model invariance (#6)
+
+**Manuscript claim**: *the support-widening dilemma and its two-scalar
+commissioning remedy are properties of the pooled one-class
+formulation, not of the GMM likelihood: they replicate under PCA-SPE,
+Hotelling T², and calibrated combined MSPC on one shared protocol —
+while the physical severity ladder does NOT generalize; it is a
+property of the likelihood deficit on the fitted support.*
+
+Disclosure carried with the claim (registered in #6 §0): the GMM
+cells (M1, E3-on-M1) are **replication anchors** already measured in
+#2/#3, and they also gate run validity (K4: exact fold-level
+flagged-frame integer counts against #2 — passed at 1408/2048,
+0/2048, 1240/2048). The prospective content is M2 (PCA-SPE), M3 (T²),
+M5 (calibrated combined MSPC), and M4 (FGMM-BIP) on physical damage.
+M2/M3/M5 are shared-protocol expressions of MSPC statistics, not
+optimised MSPC practice; their underperformance is never claimed as
+an advantage.
+
+| Item | Content |
+|---|---|
+| Pre-registered hypotheses | #6 H1a (native ≥10×-design FAR, descriptive), H1b (B/C/D adaptations fail without absorption cost), **H1c (shared-boundary feasibility — the primary judgment; K1 fires only here)**, H2 (E3 admission repair per model at bit-identical severity), H3 (unsquashed ladder per model + BIP saturation contrast); K4 anchor gate |
+| Verdicts | **H1c SUPPORTED 4/4 — K1 silent** (formulation-level claim licensed); **H2 SUPPORTED 4/4** (M4 descriptively too); H1a per-model (M1/M2 ✓, M3/M5 ✗ — reported); H1b letter-failures for M2-D/M5-C reported (sub-10% FAR bought at >60% absorption, superseded by H1c); **H3 first half KILLED — K3 FIRES** (against our own thesis); H3's M4 half supported in its starkest form |
+| H1c numbers | quantile sweep over every shared clean-tail boundary, fold-mean basis: FAR̄ < 2% ∧ extent-1 Abs̄ < 50% unreachable for all of M1/M2/M3/M5; min Abs̄ at FAR̄ < 2%: 76.0% (M2), 77.8% (M3), 77.2% (M5), unreachable (M1/M4); min FAR̄ at Abs̄ < 50%: 8.4–24.4% |
+| The other horn | M3 native boundary: FAR 0.21% **paired with** det_all 23.3% and extent-1 absorption 87.2% — T² admits unseen healthy units by being nearly blind to shallow damage |
+| H2 numbers | E3 per model: **0.10% (M1) / 0.16% (M2) / 0.33% (M3) / 0.34% (M5) / 0.00% (M4)** unseen-healthy FAR, each paired with its family's unchanged fold-mean damage detection (det_all 53.7 / 44.7 / 23.3 / 39.9 / 53.7%); severity bit-identical per model, asserted in-run |
+| K3 numbers | only M1 passes the registered ladder condition (8/8+4/4, ρ +0.85/+0.87, span 11.1 IQR); M2/M5 break the extent ladder (extent 2 > 3), M3 compresses to 2.8 IQR, all fall to 4/8 inner; M4 BIP saturates at raw median 1.0000 at every extent while detecting 77–100% |
+| Registered basis notes | all cell statistics are fold means; legacy primary-fold values replicate #2 (11.9%, 41.1%); single-fold feasible points exist but never the fold mean (the registered judgment); feasibility audit is an oracle *existence* measurement (no deployment threshold selected from damage labels) |
+| Evidence | experiment_plan_density_invariance.md §8; `paper_results/density_invariance.csv`, `density_feasibility.csv`, `density_severity.csv` |
 
 ---
 
@@ -138,12 +172,16 @@ limitations — never silently dropped.
 | Test 3 (IMS) registered descriptive-only; its B4 control at 16.2% healthy FAR disclosed as-is | plan #4 §1/§4 | §5, descriptive |
 | Test-rig scope: one rig per corpus, small failed-bearing counts (3 primary), same-spec bearings | plans #1–#4 | §7 Limitations |
 | Commissioned unit's damage phase under its own scale on longitudinal **fleet** data — untested | plan #3 §7 / principles doc | §7 / future work |
-| Production commissioning API not implemented; production defaults unchanged by all four plans | every plan's §1 | §7 — no unimplemented feature is claimed as a result |
+| Production commissioning API not implemented; production defaults unchanged by all six plans | every plan's §1 | §7 — no unimplemented feature is claimed as a result |
 | No RUL prediction anywhere (registered directive, #4 A1; #5 §4) | plan #4 A1, plan #5 §4 | scope statement in §1 and §5 |
 | #5 H3H killed: leak severe-stage detection < 50% on 3/5 seeds — the exploration's single-split 82/91% overstated it | plan #5 §7 | §4 — split fragility as a registered finding |
 | #5 cooler healthy FAR at design on 1/5 seeds only (0.51–5.61%; worst = BIC K-collapse) | plan #5 §7 | §4 + §7 Limitations (recurring healthy-FAR gap, with #4 t1-B3) |
 | #5 accumulator: registered observability limit confirmed 5/5 (representation property, not detector claim) | plan #5 §7 | §7 Limitations |
 | #5 is a registered confirmatory validation, not blind (exploration preceded it) | plan #5 §0 | disclosed wherever #5 is cited |
+| #6 K3 fired: the severity ladder is likelihood-deficit-specific — M2/M5 break it, M3 compresses it, BIP saturates at 1.0000 | plan #6 §8 | §4.6 + §2.7-1 scope bound + §7 Limitations |
+| #6 H1a/H1b letter-failures (M3/M5 native FAR below 10× design; M2-D/M5-C sub-10% FAR at >60% absorption) | plan #6 §8 | §4.6, reported as registered; H1c controls the license |
+| #6 M2/M3/M5 are shared-protocol MSPC expressions, not optimised practice; feasibility audit is oracle-existence on fold means | plan #6 §7/§8 | §4.6 disclosure + §7 Limitations |
+| #6 GMM cells are replication anchors (not prospective); K4 integer-count gate disclosed | plan #6 §0 | disclosed wherever #6 is cited |
 
 ## Pre-registered vs post-hoc — the ledger
 
@@ -152,7 +190,10 @@ H2, H3, H5; #2 A–E; #3 E0–E4 with the E1-ladder diagnostic; #4 H1L,
 H2L, H3L, H4L, M; #5 H1H–H4H (with the §0 disclosure: registered
 confirmatory validation — the exploration preceded it, so #5's
 previously-observed quantities are protocol-fixed replications, while
-the valve margin ordering and the leak kill are new findings).
+the valve margin ordering and the leak kill are new findings); #6
+H1a/H1b/H1c, H2, H3, K4 (with the §0 disclosure: M1/E3-on-M1 cells
+are replication anchors; the prospective content is M2/M3/M5 and
+M4-on-physical-damage).
 Post-hoc / interpretive material (quotable only as
 interpretation, and labeled as such in the manuscript):
 

@@ -5,10 +5,11 @@ Target venue: **Mechanical Systems and Signal Processing (MSSP)**
 machine/system health monitoring**). Fallbacks: EAAI, Reliability
 Engineering & System Safety — same manuscript spine, different section
 weighting. This document is the working outline of the
-pivoted manuscript. It supersedes the v1 draft
-([paper_draft.md](paper_draft.md)) **as the main line only**: the v1
-draft is complete, its numbers are unchanged, and its NAB / SKAB / TEP
-material becomes the Appendix of this paper (migration plan below).
+pivoted manuscript — **now drafted**: [paper_draft.md](paper_draft.md)
+is the complete v2 manuscript written to this outline (§1–§8 plus
+Appendices A–E). The v1 draft's evidence material is folded into those
+appendices with numbers unchanged; the v1 manuscript itself is
+preserved verbatim in git history.
 Concept, abstract, and contribution bullets: [abstract.md](abstract.md).
 Claim–evidence correspondence: [claim_evidence_map.md](claim_evidence_map.md).
 
@@ -43,16 +44,28 @@ pre-registration #5 (hydraulic graded severity), executed under the
 full freeze discipline (plan 2f78443 → runner 7c6d054 → results) with
 no new features (the promoted cycle-phase vocabulary, as released) and
 no default changes. Everything else above stays binding.
+*Logged amendment 2 (2026-07-14)*: the same rule was lifted a second
+time by explicit author authorization for exactly one addition —
+pre-registration #6 (density-model invariance of the support-widening
+dilemma), executed under the full freeze discipline (plan dd264cc →
+runner 8beb325 → results 3b75342) with no new features (comparator
+statistics PCA-SPE / T² / FGMM-BIP reuse the released Appendix-B
+implementations on the frozen #2 geometry; the calibrated combined
+statistic is a registered evaluation construct, not a product change)
+and no default changes. Manuscript effect: new §4.6, §2.7-1 scope
+bound (K3), formulation-level wording licensed by H1c, "six registered
+experiments". Everything else above stays binding.
 
 ---
 
 ## 1. The central problem
 
-Generic one-class anomaly detection collapses two different sources
+Conventional pooled one-class monitoring — a single shared normal
+support with a single alarm score — collapses two different sources
 of deviation into the same outlier score: **normal variation between
 healthy individuals** of identical specification, and **change caused
-by physical damage**. The consequence is a dilemma with no tuning
-escape: a narrow normal support false-alarms on unseen healthy units
+by physical damage**. The consequence is a dilemma that support
+widening alone did not escape in the tested formulation: a narrow normal support false-alarms on unseen healthy units
 (Paderborn: 42% mean FAR on unseen healthy bearings under the flat
 pooled support), while a widened support absorbs shallow damage
 (extent-1 absorption 11.9% → up to 41.1% under the widened
@@ -90,9 +103,10 @@ Central sentences (fixed):
 > **Share the geometry, commission the individual, and monitor
 > degradation against its own history.**
 
-> Physical damage severity was represented by a transferable
-> geometry, whereas deployable failure alarms required an
-> asset-specific longitudinal reference.
+> Physical damage extent was represented on a geometry transferable
+> across same-spec bearing individuals, whereas valid failure
+> alarming in the tested architecture required an asset-specific
+> longitudinal reference.
 
 > Cross-sectional calibration success does not imply longitudinal
 > detection validity.
@@ -204,11 +218,13 @@ mere false alarms.
   The six mechanisms:
   1. *Why the margin preserves severity*: the margin is an
      unnormalized log-likelihood distance below the clean support
-     floor — monotone in displacement from the normal structure, never
-     squashed through a probability — so a physically deeper fault
-     maps to a larger distance in the shared geometry (evidence: #1
-     H1 ordering, #5 H1H/H2H, hydraulic exploration's saturation
-     contrast in the v1 draft).
+     floor — an unsquashed likelihood deficit, not a metric distance
+     and not monotone in general for multimodal densities; ordinal
+     severity is retained when the feature map resolves the physical
+     degree of freedom and the fitted log-likelihood decreases along
+     the observed degradation path — an empirical condition, tested
+     (evidence: #1 H1 ordering, #5 H1H/H2H; drafted per the v2.1
+     internal review).
   2. *Why the vocabulary is fault-agnostic*: the qualification law
      (architecture §13.2) — log-spaced band energies, spectral
      entropy, generic envelope bands, cycle-phase profile + timing —
@@ -313,7 +329,10 @@ mere false alarms.
   intellectual center — mandatory subsection).** Not "commissioning
   worked cross-sectionally and failed longitudinally" as two
   measurements, but **two consequences of the same equation**, via
-  §2.7-3/4: write the standardized margin m̃ = (m − b̂ᵢ)/ŝᵢ once, and
+  §2.7-3/4: write the likelihood standardization
+  zᵢ = (ℓ − b̂ᵢ)/ŝᵢ once (the commissioned alarm score is
+  aᵢ = (ℓ_floor − (b_ref + s_ref·zᵢ))/s_ref; the shared margin is a
+  different object and is never transformed), and
   read it twice. Cross-sectionally, the affine map aligns healthy
   quantiles across units, so the admission FAR lands at design (#3,
   0.10%) while the shared geometry — and with it severity ordering —
@@ -365,7 +384,7 @@ mere false alarms.
 Existing figures fig1–fig5 (NAB/multivariate) move with their
 sections to the Appendix. Main-text figures are a two-stage build
 (publication engineering, not research): (1)
-`python -m tests.figures.export_paper_results` re-executes the five
+`python -m tests.figures.export_paper_results` re-executes the #1–#5
 pre-registered computations through the frozen runners (identical
 seeds, splits, and evaluation order) into the machine-readable
 snapshot `paper_results/` (CSV/NPZ + manifest.json with a

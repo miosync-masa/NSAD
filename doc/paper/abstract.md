@@ -14,7 +14,9 @@ longitudinal degradation are separated as signal structure in machine
 condition monitoring*. That is MSSP's stated scope (signal processing
 in machine/system health monitoring, time series methods, uncertainty
 quantification, prognostics), and MSSP explicitly requests theory +
-experiment — which the five pre-registered validations plus the §2.7
+experiment — which the six registered validations (one a disclosed confirmatory,
+one a density-model invariance test with disclosed replication
+anchors) plus the §2.7
 mechanism obligations ([paper_v2_outline.md](paper_v2_outline.md))
 supply. The manuscript is positioned as **normal-structure signal
 interpretation for machine health monitoring**, not as an AI
@@ -22,9 +24,9 @@ benchmark method.
 
 **This version supersedes the v1 concept** (NAB/SKAB/TEP-centered
 "AI-ready sensor interpretation" framing; preserved verbatim in git
-history and, as a drafted manuscript, in
-[paper_draft.md](paper_draft.md), whose benchmark material becomes
-this paper's Appendix). Outline:
+history). The v2 manuscript itself is drafted:
+[paper_draft.md](paper_draft.md) (§1–§8 + Appendices A–E, with the v1
+benchmark material folded into the appendices). Outline:
 [paper_v2_outline.md](paper_v2_outline.md). Claim–evidence
 correspondence: [claim_evidence_map.md](claim_evidence_map.md).
 
@@ -58,19 +60,29 @@ a supporting role, exactly as in v1.
 
 ## 3. Core claim (the central proposition)
 
-> Generic one-class anomaly detection collapses normal variation
+> Conventional pooled one-class monitoring — a single shared normal
+> support with a single alarm score — collapses normal variation
 > between healthy individuals and damage-induced change into the same
 > outlier score. Narrowing the normal support false-alarms on unseen
 > healthy units; widening it absorbs shallow damage. We show, through
-> five pre-registered experiments on physical machine data under one
-> frozen detector configuration, that the resolution is a role
-> separation: physical damage severity lives on a **transferable
-> shared geometry** — order-preserving across bearing individuals and,
-> in a registered confirmatory validation, across machine classes —
-> the healthy alarm origin is a **per-individual commissioning
-> quantity** (two scalars from ~64 s), and the failure alarm requires
-> the **unit's own longitudinal history** — because cross-sectional
-> calibration success does not imply longitudinal detection validity.
+> six registered experiments (one an explicitly disclosed
+> confirmatory validation, one a density-model invariance test whose
+> GMM cells are disclosed replication anchors) on physical machine
+> data under one frozen detector configuration, that the resolution
+> is a role separation:
+> physical damage extent lives on a **shared fitted geometry** —
+> order-preserving at group level across same-spec bearing
+> individuals, with the ordering principle replicated on a second
+> machine class — the healthy alarm origin is a **per-individual
+> commissioning quantity** (two scalars from ~64 s), and, in the
+> tested architecture, valid failure alarming required the **unit's
+> own longitudinal history** — because cross-sectional calibration
+> success does not imply longitudinal detection validity. The dilemma
+> and its commissioning remedy are formulation-level — they replicate
+> under PCA-SPE, Hotelling T², and calibrated combined MSPC on one
+> shared protocol — while the severity ladder is carried only by the
+> likelihood deficit (a registered kill, reported against our own
+> thesis).
 
 One-line form (fixed):
 
@@ -79,9 +91,10 @@ One-line form (fixed):
 
 Second fixed sentence:
 
-> Physical damage severity was represented by a transferable
-> geometry, whereas deployable failure alarms required an
-> asset-specific longitudinal reference.
+> Physical damage extent was represented on a geometry transferable
+> across same-spec bearing individuals, whereas valid failure
+> alarming in the tested architecture required an asset-specific
+> longitudinal reference.
 
 ## 4. Contributions
 
@@ -97,7 +110,7 @@ manuscript, grounded in an executed pre-registered result).
   severity geometry from asset-specific calibration and longitudinal
   reference.** The framework decides *which parts of learned
   normality are fleet property and which are individual property* —
-  a question generic one-class formulations do not pose.
+  a question conventional pooled one-class formulations do not pose.
 - **Severity margin and alarm decision designed as distinct
   statistical objects.** The severity margin is a non-saturating,
   cross-unit-comparable ordinal ruler; the alarm score is a
@@ -118,7 +131,9 @@ manuscript, grounded in an executed pre-registered result).
 - **Recovery of unseen-healthy-individual FAR by two-scalar
   commissioning**: median + IQR of the unit's own clean likelihood
   from ~64 s of healthy operation → FAR 0.10%, below the designed
-  0.5% rate, at bit-identical severity.
+  0.5% rate, leaving the separately reported shared-severity
+  output bit-identical by construction (damage-phase alarm of a
+  commissioned unit untested cross-sectionally).
 - **Run-to-failure lead of 74–148 h at 93.5–99.6% persistence** with
   statistically progressive margins (occupancy ρ +0.90/+1.00/+0.95)
   on all three primary IMS failed bearings, from each unit's own
@@ -130,27 +145,39 @@ manuscript, grounded in an executed pre-registered result).
 - **A semantic separation of detection and localization** grounded in
   the same-shaft control finding: sensors observe the machine system;
   claiming the source bearing is a different inference task.
-- **Cross-domain graded-severity extension (registered confirmatory
+- **Cross-domain replication of the graded-severity ordering principle (registered confirmatory
   validation, #5)**: on a cyclic hydraulic rig, cooler degradation
   grades map to 100%-detected, CI-separated ordered margins on 5/5
   registered splits, and valve margins order all three degradation
   stages (ρ +0.89…+0.93) even where mild-stage detection is absent —
   with the leak target killed by its own registered detection
   criterion and the accumulator's observability limit confirmed.
+- **Density-model invariance of the dilemma and the remedy (#6)**: no
+  shared clean-tail boundary reconciles unseen-healthy admission
+  (fold-mean FAR < 2%) with shallow-damage retention (extent-1
+  absorption < 50%) under GMM deficit, PCA-SPE, Hotelling T², or
+  calibrated combined MSPC — minimum absorption at the FAR ceiling is
+  76–78% where the ceiling is reachable at all — while two-scalar
+  commissioning restores designed admission under every family
+  (0.10–0.34%) at bit-identical severity. Reported against our own
+  thesis: the physical severity ladder did not generalize (K3 fired);
+  it is a property of the likelihood deficit on the fitted support.
 
 ## 5. Abstract draft (~260 words)
 
-> One-class anomaly detection for machine condition monitoring
-> collapses two different sources of deviation — normal variation
-> between healthy individuals of identical specification, and change
-> caused by physical damage — into a single outlier score. A narrow
+> Conventional pooled one-class monitoring — a single shared normal
+> support with a single alarm score — collapses two different sources
+> of deviation in machine condition monitoring into one outlier
+> score: normal variation between healthy individuals of identical
+> specification, and change caused by physical damage. A narrow
 > normal support then raises false alarms on unseen healthy units,
 > while a widened support absorbs shallow damage. We address the
 > resulting deployment question — how to admit healthy individuality
 > without losing damage severity or degradation progression — through
-> five pre-registered experiments on physical machine corpora, under
-> one frozen detector configuration, with implementations committed
-> before results were read. First, on the Paderborn corpus, the
+> six registered experiments, including one explicitly disclosed
+> confirmatory validation following exploration, on physical machine
+> corpora, under one frozen detector configuration, with
+> implementations committed before results were read. First, on the Paderborn corpus, the
 > physical extent of real accelerated-lifetime damage was
 > order-preserved on a shared severity margin across bearing
 > individuals (12/12 ordered condition-pairs, zero reversals,
@@ -160,18 +187,32 @@ manuscript, grounded in an executed pre-registered result).
 > were absorbed. Third, two scalars per unit — the median and
 > interquartile range of its own clean likelihood, estimated from
 > about 64 seconds of healthy commissioning — restored the designed
-> false-alarm rate on unseen healthy bearings (0.10%) at bit-identical
-> severity. Fourth, on NASA IMS run-to-failure data, margins
+> false-alarm rate on unseen healthy bearings (0.10%) while leaving
+> the separately reported shared-severity output unchanged by
+> construction. Fourth, on NASA IMS run-to-failure data, margins
 > referenced to each unit's own early life were statistically
 > progressive on all three failed bearings (alarm-occupancy
 > ρ ≥ +0.90, lead times 74–148 h, persistence 93.5–99.6%), whereas
 > reusing the fleet commissioning calibration as the failure alarm
 > was 11–14% of life late, or silent. Fifth, a registered
-> confirmatory validation on a cyclic hydraulic rig extended the
-> graded-severity ordering to a second machine class (cooler and
-> valve margins ordered with confidence intervals on all registered
-> splits; the leak target failed its registered detection criterion
-> and is reported as such). The resulting deployment
+> confirmatory validation replicated the graded-severity ordering
+> principle on a second machine class — a cyclic hydraulic rig
+> (cooler and valve margins ordered with confidence intervals on all
+> registered splits; the leak target failed its registered detection
+> criterion and is reported as such). Sixth, the dilemma and its
+> commissioning remedy proved formulation-level rather than
+> detector-level: under PCA squared prediction error, Hotelling T²,
+> and a calibrated combined MSPC statistic on the same registered
+> folds, no shared clean-tail boundary reconciled unseen-healthy
+> admission with shallow-damage retention (at a 2% false-alarm
+> ceiling the cheapest absorption of shallowest damage was 76–78%
+> under those three statistics; under the likelihood deficit itself
+> the ceiling was unreachable), while the same two-scalar
+> commissioning recovered the designed rate under every score family
+> (0.10–0.34%, at each family's unchanged damage detection) — and
+> only the likelihood deficit carried the physical extent ladder, a
+> registered kill we report against our own thesis.
+> The resulting deployment
 > principle — share the severity geometry, commission the individual,
 > and monitor degradation against its own history — separates
 > transferable damage severity from asset-specific alarm calibration.
@@ -196,6 +237,10 @@ manuscript, grounded in an executed pre-registered result).
   order-preserved on the same margin (registered confirmatory
   validation; failures reported: leak killed, accumulator
   unobservable at this granularity).
+- The admission/absorption dilemma and its two-scalar remedy are
+  formulation-level: both replicate under PCA-SPE, Hotelling T², and
+  calibrated combined MSPC; the severity ladder is
+  likelihood-deficit-specific (registered kill, reported).
 - Deployment principle: share the geometry, commission the
   individual, monitor degradation against its own history; anomaly
   detection and fault localization are semantically separated.
@@ -206,7 +251,7 @@ manuscript, grounded in an executed pre-registered result).
 |---|---|
 | "High detection accuracy is not MSSP novelty" (the central MSSP risk) | Agreed — and the paper does not claim it. The contribution is the **separation of signal structure**: severity geometry, alarm calibration, and longitudinal reference as distinct statistical objects, each licensed by a registered success AND bounded by a registered failure of its misuse (#2 B–D, #4 H3L, #5 H3H). Every mechanism is stated mathematically/physically via the §2.7 obligations (outline), not only measured. |
 | "Where is the signal-processing novelty specifically?" | (i) The fault-agnostic vocabulary with a mechanism proof, not a heuristic: \|FFT\| is exactly circular-shift invariant, so switching-lag faults live in the discarded phase — the timing vocabulary recovers them, unit-tested; (ii) the non-saturating log-likelihood margin as a severity carrier (why probability-type indices lose gradation); (iii) the location–scale algebra of commissioning — what an affine transform of clean likelihood can fix (admission FAR) and provably cannot (longitudinal displacement, divided down with the unit's IQR). |
-| "Why is the margin a severity measure at all?" | §2.7-1: monotone distance below the clean support floor in a shared geometry; empirically order-preserving against physical extent (#1), graded stages (#5), and wear/time (#4, milling) — three independent physical severity axes. |
+| "Why is the margin a severity measure at all?" | §2.7-1: an unsquashed likelihood deficit — not a metric distance, and not monotone in general for multimodal densities; the ordinal-severity condition (fitted log-likelihood decreasing along the observed degradation path) is stated as empirical and tested: order-preserving against physical extent (#1), graded stages (#5), and wear/time (#4, milling) — three independent physical severity axes. |
 | "Observability limit is hand-waving" | Defined operationally (§2.7-6): a fault mode is observable at granularity g iff its physical degree of freedom displaces the feature map on the fitted support; the accumulator's invariance across every registered granularity (H4H 5/5) is the demonstration, claimed as a representation property. |
 | "Paderborn is a supervised deep-learning diagnosis benchmark (Lessmeier et al. 2016) — where is the CNN/LSTM comparison?" | Stated first, in our own voice (§1 landscape): supervised fault classifiers answer "which known fault is this?" from labeled fault examples; this paper answers "how do we separate normal individuality from damage, and grade it, with healthy data only?" Different inputs (fault labels vs none), different outputs (class posterior vs severity margin + calibrated alarm) — no accuracy comparison is claimed or owed, and envelope analysis is positioned as the fault-specific complement on the signal side. |
 | "Only bearings / one rig per corpus" | Stated as a limitation up front; #5 extends the severity-geometry claim to a cyclic hydraulic rig (a second machine class, heterogeneous sensors) under registered statistics; the claim remains the role-separation principle, demonstrated end-to-end on the hardest public physical corpora available for it (known damage extent, graded degradation labels, run-to-failure); NAB/SKAB/TEP breadth checks retained in the appendix. |
@@ -219,6 +264,8 @@ manuscript, grounded in an executed pre-registered result).
 | "Where is RUL?" | Explicitly out of scope by registered directive (#4 A1); the paper claims detection validity readouts (onset, occupancy, persistence, deepening), never remaining-life estimates. |
 | "Milling result is weak" | Registered descriptive-only; median ρ +0.38 with 11/14 positive and one −0.82 reported without smoothing, as auxiliary evidence for continuous-wear tracking. |
 | "Benchmark numbers no longer defended?" | They were never leaderboard claims (v1 legitimacy rule); they move to the appendix with their full protocol taxonomy intact. |
+| "The dilemma is just your GMM floor — MSPC would not have it" | Answered experimentally by #6: on one shared protocol, PCA-SPE, T², and calibrated combined MSPC face the same shared-boundary infeasibility (H1c 4/4; T² merely sits on the other horn: 0.21% FAR paired with 23.3% detection and 87.2% extent-1 absorption), and the two-scalar remedy repairs admission under all of them. Disclosed: shared-protocol expressions, not optimised MSPC practice; no superiority claim. |
+| "#6's GMM numbers were already known" | Conceded in the plan itself (§0): M1/E3-on-M1 cells are replication anchors that also gate run validity (exact integer-count match to #2); the prospective content is M2/M3/M5 and M4-on-physical-damage. |
 | "Post-hoc reinterpretation" | The ledger in claim_evidence_map.md separates registered verdicts from logged post-hoc refinements; #2 §8-B is cited as the in-house example of why post-hoc numbers carry no evidential weight. |
 
 ## 8. Limitations (for the honest paper — fixed list)
@@ -233,8 +280,12 @@ manuscript, grounded in an executed pre-registered result).
 - Hydraulic (#5): leak detection is split-fragile at cycle-summary
   granularity (registered kill); accumulator unobservable at this
   sensor set; cooler healthy FAR at design on 1/5 splits only.
+- Density invariance (#6): the comparator statistics are
+  shared-protocol expressions of MSPC, not optimised practice; the
+  feasibility audit is an oracle existence measurement on fold means;
+  the severity ladder is likelihood-deficit-specific (K3 fired).
 - Production commissioning API not implemented; repository defaults
-  unchanged by all five pre-registrations.
+  unchanged by all six pre-registrations.
 - A commissioned unit's damage phase under its own scale on
   longitudinal fleet data remains untested.
 
