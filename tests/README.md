@@ -18,7 +18,7 @@ those SHAs; current paths are below.
 | Synthetic probes (§6.5–§7) | `python -m pytest tests/probes -q` | ghost state, worked consumer, H2, SPE/T² identities, contextual gate |
 | Core unit tests | `python -m pytest tests/core -q` | unknown channel, OR calibration, cycle-phase mechanism |
 | Manuscript figures (v1 / Appendix) | `python -m tests.figures.make_figures` | doc/figures/fig1–fig5 |
-| **Paper results snapshot (v2 build step)** | `python -m tests.figures.export_paper_results` | paper_results/*.csv, *.npz, manifest.json — re-executes the five pre-registered computations via the frozen runners (identical seeds/splits/order) and verifies key stats against the registered numbers |
+| **Paper results snapshot (v2 build step)** | `python -m tests.figures.export_paper_results` | paper_results/*.csv, *.npz, manifest.json — re-executes the #1–#5 pre-registered computations via the frozen runners (identical seeds/splits/order) and verifies key stats against the registered numbers |
 | Manuscript figures (v2 main text) | `python -m tests.figures.make_paper_v2_figures` | doc/figures/v2_fig1–v2_fig5, generated from paper_results/ ONLY (no dataset access) |
 | Hydraulic exploration | `python -m tests.hydraulic.exp_hydraulic` | doc/explorations/hydraulic_exploration.md |
 | Paderborn #1 | `python -m tests.paderborn.exp_paderborn_full` | doc/preregistrations/experiment_plan_paderborn.md §5 |
@@ -26,6 +26,7 @@ those SHAs; current paths are below.
 | Paderborn #3 | `python -m tests.paderborn.exp_paderborn3` | doc/preregistrations/experiment_plan_paderborn3.md §7 |
 | IMS + Milling #4 | `python -m tests.ims.exp_ims` | doc/preregistrations/experiment_plan_ims.md §4 |
 | Hydraulic #5 | `python -m tests.hydraulic.exp_hydraulic_prereg` | doc/preregistrations/experiment_plan_hydraulic.md §7 |
+| Density invariance #6 | `python -m tests.paderborn.exp_density_invariance` | doc/preregistrations/experiment_plan_density_invariance.md §8 (+ paper_results/density_*.csv) |
 
 ## Directory map
 
@@ -37,7 +38,7 @@ those SHAs; current paths are below.
 | `nab/` | NAB loaders (`nab_datasets`, `nab_features`, `nab_metrics`) + the three protocol harnesses + the original per-file sweep harness (`benchmark_nab`, protocol P2) | paper evidence |
 | `multivariate/` | SKAB/TEP loaders + benchmarks + contextual stratification + the three §6.5 experiments | paper evidence |
 | `hydraulic/` | UCI 447 loader + exploration (granularity ladder, cycle-phase recovery) + pre-registration #5 runner | exploration + pre-registered (SHA-anchored) |
-| `paderborn/` | Paderborn loader + subset exploration + pre-registrations #1/#2/#3 runners | pre-registered (SHA-anchored) |
+| `paderborn/` | Paderborn loader + subset exploration + pre-registrations #1/#2/#3/#6 runners | pre-registered (SHA-anchored) |
 | `ims/` | NASA IMS + Milling loaders + pre-registration #4 runner | pre-registered (SHA-anchored) |
 | `figures/` | manuscript figure generation (validated palette, regenerates every data panel) | paper support |
 | `legacy/` | pre-NSAD era harnesses (ablation v1/v2, changepoint/sparse/drift benchmarks, NAB v1–v6 progression harnesses, synthetic generators, GPU equivalence, `test_split_equivalence` — requires the removed `lambda3_detector_v2`) | inventory per architecture.md §13.8; not on any current evidence path |

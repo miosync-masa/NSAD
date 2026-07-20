@@ -107,8 +107,17 @@ def fig1():
         ax.grid(True, axis='y')
         ax.set_axisbelow(True)
     axes[0].set_ylabel('median severity margin (IQR units)')
-    axes[0].text(1.0, healthy.median_margin.max(), ' healthy identity band',
-                 fontsize=6.2, color=INK2, va='bottom')
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
+    fig.legend(handles=[
+        Line2D([], [], marker='o', ls='none', ms=4.5, color=BLUE,
+               mec='white', mew=0.5, label='per-bearing median'),
+        Line2D([], [], color=BLUE, lw=2, alpha=0.55,
+               label='per-extent group median'),
+        Patch(fc=GRID, alpha=0.5,
+              label='healthy per-bearing median range')],
+        loc='lower center', ncol=3, fontsize=6.8, frameon=False,
+        bbox_to_anchor=(0.5, -0.12))
     _save(fig, 'v2_fig1_severity_ladder')
 
 
@@ -125,10 +134,12 @@ def fig2():
                        .absorb_e1.iloc[0])
     killed = sup[~sup.candidate.str.startswith('E')]
     for _, r in killed.iterrows():
+        tag = r.candidate.split()[0]
+        if tag == 'A':
+            tag = 'A (flat-support control)'
         ax.plot(100 * r.far_mean, 100 * r.absorb_e1, 'o', ms=6,
                 color=RED, mec='white', mew=0.6, zorder=3)
-        ax.annotate(r.candidate.split()[0], (100 * r.far_mean,
-                                             100 * r.absorb_e1),
+        ax.annotate(tag, (100 * r.far_mean, 100 * r.absorb_e1),
                     textcoords='offset points', xytext=(6, 3),
                     fontsize=7, color=INK)
     e2 = sup[sup.candidate.str.startswith('E')].iloc[0]
@@ -156,6 +167,12 @@ def fig2():
                  '(alarm-side only)', loc='left')
     ax.grid(True, which='both', axis='x')
     ax.set_axisbelow(True)
+    fig.text(0.01, -0.04,
+             'E/E3 vertical coordinates denote the unchanged shared-'
+             'severity output (bit-identical by construction); '
+             'commissioned damage-phase alarm\nperformance was not '
+             'evaluated in this cross-sectional corpus.',
+             fontsize=6.0, color=INK2, va='top')
     _save(fig, 'v2_fig2_dilemma')
 
 
@@ -178,7 +195,7 @@ def fig3():
         ax.axvspan(0, 100 * n_con / n, color=GRID, alpha=0.5, lw=0)
         ax.axhline(0, color=INK2, lw=0.6, ls=':')
         ax.plot(life, np.clip(e3, -20, None), lw=0.9, color=RED,
-                alpha=0.8, label='E3 fleet margin (H3L)')
+                alpha=0.8, label='E3 fleet-calibrated alarm margin (H3L)')
         ax.plot(life, np.clip(med, -20, None), lw=1.1, color=BLUE,
                 label='per-asset margin')
         ax.set_yscale('symlog', linthresh=5)
@@ -207,7 +224,7 @@ def fig3():
         ax.text(1.2, ylo * 0.55, 'construction\n(first 20%)',
                 fontsize=6.2, color=INK2, va='bottom')
         ax.set_title(title, loc='left')
-        ax.set_ylabel('margin (IQR)')
+        ax.set_ylabel('margin (IQR, symlog)')
         ax.grid(True, axis='y')
         ax.set_axisbelow(True)
     axes[0].legend(loc='center left', ncol=1, borderaxespad=1.2)
@@ -239,19 +256,21 @@ def fig4():
                     ha='center', fontsize=6.2, color=color)
 
     box(1, 6, 28, 19,
-        'FACTORY-SHARED\n(fleet prior)\n\nfault-agnostic adapter\n'
+        'FACTORY-SHARED\n(fleet-level shared model)\n\n'
+        'fault-agnostic adapter\n'
         'shared geometry · severity margin\nthe common ruler\n'
-        '#1: ordering 12/12, ρ +0.85/+0.87', ec=BLUE, lw=1.2, fs=6.3)
+        '#1: ordering 12/12, ρ +0.85/+0.87', ec=BLUE, lw=1.2, fs=6.2)
     box(36, 6, 28, 19,
         'COMMISSIONING\n(admission)\n\nhealthy median + IQR (~64 s)\n'
-        'alarm origin + unit, per asset\n#3: FAR 0.10%, severity '
-        'bit-identical\nNEVER the failure alarm (#4 H3L)', ec=AQUA,
-        lw=1.2, fs=6.3)
+        'alarm location + scale, per asset\n#3: FAR 0.10%, severity '
+        'bit-identical\nadmission calibration only —\n'
+        'not the failure alarm (#4 H3L)', ec=AQUA,
+        lw=1.2, fs=6.2)
     box(71, 6, 28, 19,
-        'IN SERVICE\n(asset posterior)\n\nown-history longitudinal\n'
-        'reference: onset · occupancy ·\ndeepening   #4: lead '
-        '74–148 h,\npersistence 93.5–99.6%', ec=VIOLET, lw=1.2,
-        fs=6.3)
+        'IN SERVICE\n(asset-specific\nlongitudinal reference)\n\n'
+        'own-history reference:\nonset · occupancy · deepening\n'
+        '#4: lead 74–148 h,\npersistence 93.5–99.6%', ec=VIOLET,
+        lw=1.2, fs=6.2)
     arrow(29.6, 15.5, 35.4, 15.5)
     ax.text(32.5, 18.2, 'new\nunit', ha='center', fontsize=6.0,
             color=INK2)
@@ -269,9 +288,9 @@ def fig5():
     """Hydraulic graded severity across the five registered splits (#5)."""
     df = _csv('hydraulic_seed_stage.csv')
     fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.7))
-    panels = [('cooler — magnitude profile', 'cooler',
+    panels = [('cooler — magnitude profile (symlog)', 'cooler',
                {20.0: 'stage 20%', 3.0: 'stage 3%'}, 'symlog'),
-              ('valve — timing geometry', 'valve',
+              ('valve — cycle-phase/timing geometry', 'valve',
                {90.0: '90%', 80.0: '80%', 73.0: '73%'}, 'linear')]
     for ax, (title, target, stages, yscale) in zip(axes, panels):
         sub = df[df.target == target]
@@ -283,7 +302,7 @@ def fig5():
                         alpha=0.75, solid_capstyle='round')
                 ax.plot([x], [r['median']], 'o', ms=3.4, color=BLUE,
                         mec='white', mew=0.4)
-            ax.annotate(f'det {100 * g.det.mean():.0f}%',
+            ax.annotate(f'mean det. {100 * g.det.mean():.0f}%',
                         (si, g.p95.max()), textcoords='offset points',
                         xytext=(0, 7), ha='center', fontsize=6.5,
                         color=INK2)
@@ -298,7 +317,8 @@ def fig5():
         ax.set_xlabel('degradation stage (mild → severe)')
         ax.grid(True, axis='y')
         ax.set_axisbelow(True)
-    axes[0].set_ylabel('margin (IQR), 5 registered splits')
+    axes[0].set_ylabel('margin (IQR); dot = split median, '
+                       'bar = p25–p75')
     axes[1].annotate('alarm floor', (len(panels[1][2]) - 1.42, 0),
                      fontsize=6.2, color=INK2, va='bottom',
                      ha='left')
