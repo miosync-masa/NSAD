@@ -1,4 +1,4 @@
-# Lambda³ Documentation
+# Lambda³ NSAD Documentation
 
 Paper drafts, pre-registered experiment records, and system reference.
 
@@ -18,10 +18,7 @@ doc/
 
 | File | Content |
 |---|---|
-| **[paper_v2_outline.md](paper/paper_v2_outline.md)** | **The main line (v2, engineering pivot)**: central problem (healthy individuality vs damage severity collapsed into one outlier score), the three-layer deployment answer, section-by-section outline (Paderborn #1–#3 and IMS #4 primary; NAB/SKAB/TEP → Appendix breadth checks), detection-vs-localization scope separation, figures plan, fixed not-in-this-paper list |
 | **[claim_evidence_map.md](paper/claim_evidence_map.md)** | Claim–evidence correspondence for the six pre-registrations: hypothesis / verdict / key numbers / freeze SHAs per pillar, the failure-and-limitation registry (everything retained), the pre-registered-vs-post-hoc ledger |
-| **[abstract.md](paper/abstract.md)** | MSSP paper concept (v2): venue rationale (field [A] signal processing in machine/system health monitoring), title candidates, core claim ("share the geometry, commission the individual, monitor degradation against its own history"), methodological vs engineering contribution split, abstract draft, contribution bullets, MSSP review risks, limitations |
-| **[paper_draft.md](paper/paper_draft.md)** | **The v2 MSSP manuscript — complete draft**: §1–§8 main text (problem → method incl. §2.7 mechanisms → breadth checks → cross-sectional → longitudinal → deployment principle with the H3L mechanistic closure → limitations → conclusion) plus Appendices A–E (v1's protocol, NAB/SKAB/TEP results, architecture detail, and worked consumer folded in with numbers unchanged; pre-registration provenance table). The v1 EAAI draft is preserved verbatim in git history |
 | **[scoreboard.md](paper/scoreboard.md)** | Full benchmark record (Appendix material): NAB under three disclosed protocols (self-calibrated ★ / per-file sweep diagnostic / corpus-level), self-run baselines, failure taxonomy, SKAB/TEP multivariate arm (§8), reproducibility recipe |
 
 ## preregistrations/ — the evidence arc (all executed; freeze SHA precedes results SHA)
@@ -48,10 +45,8 @@ doc/
 
 | Question | See |
 |---|---|
-| The paper's main line (v2)? | [paper/paper_v2_outline.md](paper/paper_v2_outline.md) |
 | Which claim rests on which pre-registered run? | [paper/claim_evidence_map.md](paper/claim_evidence_map.md) |
 | Deployment principle in one page? | [preregistrations/nsad_deployment_principles.md](preregistrations/nsad_deployment_principles.md) |
-| Abstract / contributions / review risks? | [paper/abstract.md](paper/abstract.md) |
 | Benchmark headline (Appendix / breadth check)? | [paper/scoreboard.md §2](paper/scoreboard.md#2-self-calibrated-operating-points--headline) — unknown channel **85% catch @ 56 FP/10k**, combined **96.3%**, label-free |
 | What's the legitimacy rule? | [paper/scoreboard.md §1](paper/scoreboard.md#1-the-legitimacy-rule) |
 | Self-run baselines (OC-SVM etc.)? | [paper/scoreboard.md §2.3, §4](paper/scoreboard.md#23-clean-quantile-operating-points-incl-self-run-baselines) |
